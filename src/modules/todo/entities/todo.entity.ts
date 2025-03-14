@@ -31,6 +31,9 @@ export class Todo {
   @ManyToOne(() => User, (user) => user.collections, {nullable : false})
   user: User;
 
+  @RelationId((todo: Todo) => todo.user)
+  userId: number;
+
   // If your Todo represents a task inside a collection, you can link it
   @ManyToOne(() => Collection, (collection) => collection.todos, {nullable : false, onDelete: 'CASCADE'} )
   collection: Collection;
