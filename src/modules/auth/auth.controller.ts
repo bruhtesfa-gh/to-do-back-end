@@ -12,7 +12,7 @@ export class AuthController {
   @Post('register')
   async register(@Body() createAuthDto: CreateAuthDto) {
     const user = await this.authService.register(createAuthDto);
-    return { id: user.id, email: user.email };
+    return user;
   }
 
   @UseGuards(LocalAuthGuard)

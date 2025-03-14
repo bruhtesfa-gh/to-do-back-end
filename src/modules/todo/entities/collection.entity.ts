@@ -25,9 +25,12 @@ export class Collection {
   @Column({default : 0})
   totalTasks: number;
 
+  @Column({default : false})
+  isFavorite: boolean;
+
   @ManyToOne(() => User, (user) => user.collections)
   user: User;
 
-  @OneToMany(() => Todo, (task) => task.collection)
+  @OneToMany(() => Todo, (task) => task.collection, { cascade: true })
   todos: Todo[];
 }

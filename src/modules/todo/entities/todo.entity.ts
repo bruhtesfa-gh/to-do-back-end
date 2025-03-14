@@ -32,13 +32,13 @@ export class Todo {
   user: User;
 
   // If your Todo represents a task inside a collection, you can link it
-  @ManyToOne(() => Collection, (collection) => collection.todos, {nullable : false} )
+  @ManyToOne(() => Collection, (collection) => collection.todos, {nullable : false, onDelete: 'CASCADE'} )
   collection: Collection;
   
   @RelationId((todo: Todo) => todo.collection)
   collectionId: number
   // For nested tasks, a self-referential relation
-  @ManyToOne(() => Todo, (todo) => todo.childTodos, { nullable: true })
+  @ManyToOne(() => Todo, (todo) => todo.childTodos, { nullable: true, onDelete: 'CASCADE' })
   parentTodo: Todo;
 
   @RelationId((todo: Todo) => todo.parentTodo)

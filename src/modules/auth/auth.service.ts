@@ -18,7 +18,7 @@ export class AuthService {
     private authRepository: Repository<User>,
   ) {}
 
-  async register(createAuthDto: CreateAuthDto): Promise<User> {
+  async register(createAuthDto: CreateAuthDto): Promise<any> {
     const { email, password } = createAuthDto;
     const existingUser = await this.authRepository.findOne({
       where: { email },
@@ -28,7 +28,8 @@ export class AuthService {
     }
     const passwordHash = await bcrypt.hash(password, 10);
     const newUser = this.authRepository.create({ email, passwordHash });
-    return this.authRepository.save(newUser);
+    const user = await this.authRepository.save(newUser);
+    return this.login(user);
   }
 
   async login(user: any) {
