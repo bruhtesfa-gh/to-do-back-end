@@ -18,6 +18,12 @@ export class Collection {
 
   @Column()
   image: string;
+  
+  @Column({default : 0})
+  tasksCompleted: number;
+
+  @Column({default : 0})
+  totalTasks: number;
 
   @ManyToOne(() => User, (user) => user.collections)
   user: User;

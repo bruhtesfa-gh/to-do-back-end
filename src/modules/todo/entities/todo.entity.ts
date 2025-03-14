@@ -25,6 +25,8 @@ export class Todo {
   @Column({ default: false })
   completed: boolean;
   
+  @Column({ nullable: true })
+  dueDate: Date;
 
   @ManyToOne(() => User, (user) => user.collections, {nullable : false})
   user: User;

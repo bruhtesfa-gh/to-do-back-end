@@ -2,6 +2,7 @@ import {
   Injectable,
   // UnauthorizedException,
   ConflictException,
+  BadRequestException,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -47,6 +48,9 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string): Promise<any> {
+    if (!email || !password) {
+      throw new BadRequestException('Email and password are required');
+    }
     const user = await this.authRepository.findOne({ where: { email } });
     if (user && (await bcrypt.compare(password, user.passwordHash))) {
       return user;

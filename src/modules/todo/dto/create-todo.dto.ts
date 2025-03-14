@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTodoDto {
   @ApiProperty()
@@ -19,4 +19,8 @@ export class CreateTodoDto {
   @ApiProperty()
   @IsNumber()
   parentTodoId?: number;
+
+  @ApiProperty()
+  @IsDate()
+  dueDate?: Date;
 }

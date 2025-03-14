@@ -25,7 +25,7 @@ export class TodoController {
   @ApiBody({ type: CreateTodoDto })
   async create(@Body() createTodoDto: CreateTodoDto, @Request() req) {
     const todo = await this.todoService.create(req.user.id, createTodoDto);
-    return { data: todo };
+    return todo;
   }
 
   @Get('collection/:collectionId')
@@ -33,13 +33,13 @@ export class TodoController {
     const todos = await this.todoService.findAllByCollection(
       Number(collectionId),
     );
-    return { data: todos };
+    return todos;
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     const todo = await this.todoService.update(Number(id), updateTodoDto);
-    return { data: todo };
+    return todo;
   }
 
   @Delete(':id')

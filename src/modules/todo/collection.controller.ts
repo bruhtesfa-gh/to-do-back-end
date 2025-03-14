@@ -19,29 +19,29 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 @ApiBearerAuth()
 @Controller('collection')
 export class CollectionController {
-  constructor(private readonly todoService: CollectionService) {}
+  constructor(private readonly colleService: CollectionService) {}
 
   @Get()
   async findAll(@Request() req) {
-    const collections = await this.todoService.findAllByUser(req.user.id);
-    return { data: collections };
+    const collections = await this.colleService.findAllByUser(req.user.id);
+    return collections;
   }
   
   @Post()
   async create(@Body() createCollectionDto: CreateCollectionDto, @Request() req ) {
-    const todo = await this.todoService.create(req.user.id, createCollectionDto);
-    return { data: todo };
+    const collection = await this.colleService.create(req.user.id, createCollectionDto);
+    return collection;
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateCollectionDto: UpdateCollectionDto) {
-    const todo = await this.todoService.update(Number(id), updateCollectionDto);
-    return { data: todo };
+    const collection = await this.colleService.update(Number(id), updateCollectionDto);
+    return collection;
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    await this.todoService.remove(Number(id));
+    await this.colleService.remove(Number(id));
     return { message: 'Collection deleted successfully' };
   }
 }
