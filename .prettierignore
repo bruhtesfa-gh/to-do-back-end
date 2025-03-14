@@ -1,0 +1,10 @@
+.git
+.github
+.gitignore
+node_modules/
+dist/
+*.md
+*.ts
+*-lock.json
+.nvmrc
+*-cli.json
