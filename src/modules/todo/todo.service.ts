@@ -64,9 +64,9 @@ export class TodoService {
       if (parent.collectionId !== createTodoDto.collectionId) {
         throw new BadRequestException('Parent todo must be in the same collection');
       }
-      todo.parentTodo = {id : createTodoDto.parentTodoId} as Todo
+      todo.parentTodo = parent
     }
-    return this.todoRepository.save(todo);
+    return await this.todoRepository.save(todo);
   }
 
   async findAllByCollection(collectionId: number): Promise<Todo[]> {
