@@ -20,8 +20,7 @@ jobs:
           node-version: 18 # Change this to your Node.js version   
 
       - name: Check node_modules
-        run: |
-          cd back-end
+        run:
           if [ -d "node_modules" ]; then
             echo "Error: node_modules directory exists! Please remove ❌ it from your PR. & push again."
           else
