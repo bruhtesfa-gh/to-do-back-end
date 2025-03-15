@@ -22,9 +22,9 @@ jobs:
       - name: Check node_modules
         run:
           if [ -d "node_modules" ]; then
-            echo "Error: node_modules directory exists! Please remove ❌ it from your PR. & push again."
+            echo "node_modules directory exists! Please remove it from your PR. ❌"
           else
-            echo "node_modules directory does not exist in the PR ✅. Good to go!"
+            echo "node_modules directory does not exist in the PR. ✅"
           fi
 
       - name: Install dependencies
