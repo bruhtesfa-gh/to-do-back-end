@@ -15,8 +15,8 @@ import { TodoModule } from './modules/todo/todo.module';
       autoLoadEntities: true,
       synchronize: true, // Use migrations in production
     }),
-    AuthModule,
     TodoModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
